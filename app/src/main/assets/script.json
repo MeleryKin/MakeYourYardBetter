@@ -1,0 +1,98 @@
+{
+  "AchCount": 10,
+  "ChapterCount": 1,
+  "ChapterID": [10, 150],
+  "ScreenID10": {
+    "nextID": 20,
+    "screenType": "PrintText",
+    "blockText": "«Не знаю, как у вас, а у нас всегда кто-то сверлит. Может, взять скинуться, чтобы они перестали сверлить, - цитата Бориса Гребенщикова»."
+  },
+  "ScreenID20": {
+    "nextID": 30,
+    "screenType": "ImageWithText",
+    "imageID": 1,
+    "blockText": "«Глава 1. «Мой дом – моя крепость»"
+  },
+  "ScreenID30": {
+    "nextID": 40,
+    "screenType": "ImageWithText",
+    "imageID": 1,
+    "blockText": "«Шёл уютный осенний вечер»"
+  },
+  "ScreenID40": {
+    "nextID": 50,
+    "screenType": "ImageWithText",
+    "imageID": 1,
+    "blockText": "«Каждый в доме был занят своим делом»"
+  },
+  "ScreenID50": {
+    "nextID": 60,
+    "screenType": "ImageWithText",
+    "imageID": 1,
+    "blockText": "«Всё предвещало отличный вечер»"
+  },
+  "ScreenID60": {
+    "nextID": 70,
+    "screenType": "ImageWithText",
+    "imageID": 1,
+    "blockText": "Но вдруг..."
+  },
+  "ScreenID70": {
+    "nextID": 80,
+    "screenType": "ImageWithText",
+    "imageID": 1,
+    "blockText": ""
+  },
+  "ScreenID80": {
+    "nextID": 90,
+    "screenType": "ImageWithText",
+    "imageID": 1,
+    "blockText": ""
+  },
+  "ScreenID90": {
+    "nextID": 100,
+    "screenType": "ImageWithText",
+    "imageID": 1,
+    "blockText": ""
+  },
+  "ScreenID100": {
+    "nextID": 110,
+    "screenType": "ImageWithText",
+    "imageID": 1,
+    "blockText": "«\"Ух, ах, хрясь, бдыщ\"»"
+  },
+  "ScreenID110": {
+    "nextID": -1,
+    "screenType": "ImageWithButtons",
+    "buttonsCount": 1,
+    "imageID": 1,
+    "blockText": "",
+    "buttonID2": 120,
+    "buttonText2": "«простое решение - поменяйся контактами с соседом.» "
+  },
+  "ScreenID120": {
+    "nextID": 130,
+    "screenType": "ImageWithButtons",
+    "imageID": 1,
+    "buttonsCount": 3,
+    "buttonID1": 130,
+    "buttonID2": 130,
+    "buttonID3": 140,
+    "blockText": "«Привет, сосед! Мне надо пошуметь перфоратором минут 5. Не помешаю?»",
+    "buttonText1": "«Ок. Не проблема. Я уйду погулять.» ",
+    "buttonText2": "«Помешаешь. У меня ребёнок спит. Давай завтра?» ",
+    "buttonText3": "«Проигнорировать» "
+  },
+  "ScreenID130": {
+    "nextID": 150,
+    "screenType": "ImageWithText",
+    "imageID": 1,
+    "blockText": "«Спокойной ночи»"
+  },
+  "ScreenID140": {
+    "nextID": 150,
+    "screenType": "ImageWithText",
+    "imageID": 1,
+    "blockText": "«СЕБЕ ПОСВЕРЛИ!!!»"
+  }
+}

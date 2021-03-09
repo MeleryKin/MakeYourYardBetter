@@ -1,0 +1,21 @@
+{
+  "SaveData": {
+    "ID": 1,
+    "NextID": 2,
+    "achievement": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  },
+  "ScreenID1": {
+    "curID": 1,
+    "nextID": 2,
+    "screenType": "PrintText",
+    "blockText": "abc"
+  },
+  "ScreenID2": {
+    "curID": 2,
+    "nextID": 1,
+    "screenType": "ImageSlide",
+    "blockText": "def",
+    "coordX": 1,
+    "coordY": 1
+  }
+}

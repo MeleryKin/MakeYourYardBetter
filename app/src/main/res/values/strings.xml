@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MakeYourYardBetter</string>
+    <string name="textView">TextView</string>
+    <string name="newGameButton">Новая игра</string>
+    <string name="contButton">Продолжить</string>
+    <string name="chapterButton">Глава 1</string>
+</resources>
