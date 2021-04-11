@@ -26,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
 
         File file = new File(this.getFilesDir(), "save.json");
         try {
-            String jsonStringScript = FileWork.readScript(this);
+            String jsonStringScript = FileWork.readScript(this); // чтение скрипта
             if (!(file.exists())) {
                 JSONObject jsonObjectScript = new JSONObject(jsonStringScript); //заполение объекта сценария
-                int masAchSize = jsonObjectScript.getInt("AchCount");
-                SaveStruct save = new SaveStruct(masAchSize, jsonObjectScript);
+                int masAchSize = jsonObjectScript.getInt("AchCount"); // массив достижений
+                SaveStruct save = new SaveStruct(masAchSize, jsonObjectScript); // пустое сохранение
                 JSONObject saveObject = FileWork.makeJsonSaveObject(save);
-                FileWork.writeSaveFile(saveObject.toString(), this);
+                FileWork.writeSaveFile(saveObject.toString(), this); //создание файла сохранения
             }
         }
         catch(Exception e)  {
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             SaveStruct save = new SaveStruct(masAchSize, jsonObjectScript);
             JSONObject saveObject = FileWork.makeJsonSaveObject(save);
             FileWork.writeSaveFile(saveObject.toString(), this);
+            System.out.println(saveObject.toString());
         }
         catch(Exception e)  {
             e.printStackTrace();

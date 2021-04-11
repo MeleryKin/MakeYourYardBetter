@@ -6,6 +6,7 @@ import android.content.res.AssetManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -18,6 +19,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+
 
 public class FileWork extends MainActivity{
 
@@ -49,23 +52,79 @@ public class FileWork extends MainActivity{
         return jsonSaveData;
     }
 
-    public static void outParameters(Context context, JSONObject jsonRoot, SaveStruct currentSave,
-                                     TextView textView1, TextView textView2, Button button1, Button button2,
-                                     Button button3, ImageView imageView1)
+    public static String readConfig(Activity activity) throws IOException{
+        AssetManager am = activity.getAssets();
+        InputStream is = am.open("config.json");
+        byte[] buffer = null;
+        int size = is.available();
+        buffer = new byte[size];
+        is.read(buffer);
+        is.close();
+        return new String(buffer);
+    }
+
+    public static int outParameters(Context context, JSONObject jsonRoot, SaveStruct currentSave)
             throws JSONException, IOException {
-        textView1.setVisibility(View.INVISIBLE);
-        textView2.setVisibility(View.INVISIBLE);
-        button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.INVISIBLE);
-        button3.setVisibility(View.INVISIBLE);
-        imageView1.setVisibility(View.INVISIBLE);
 
         int c = currentSave.chProcess[currentSave.curChapter];
         JSONObject currentScreen = jsonRoot.getJSONObject("ScreenID" + c);
         System.out.println(currentScreen);
-        String currentType = currentScreen.getString("screenType");
+        int type = currentScreen.getInt("screenType");
+        //ScreenTypes curType = GameActivity.screen[type];
+        JSONArray views = currentScreen.getJSONArray("views");
+        int param = 0;
 
-        switch(currentType){
+        GameActivity.screen[type].layout.removeAllViews();
+
+        for (int i = 0; i < GameActivity.screen[type].textViews.length; i++){
+            JSONObject jo = views.getJSONObject(param);
+            System.out.println(jo.toString());
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(jo.getInt("height")));
+            p.leftMargin = newWidth(jo.getInt("left"));
+            p.topMargin = newHeight(jo.getInt("top"));
+            GameActivity.screen[type].textViews[i].setText(jo.getString("text"));
+            GameActivity.screen[type].textViews[i].setLayoutParams(p);
+            GameActivity.screen[type].layout.addView(GameActivity.screen[type].textViews[i]);
+            param++;
+        }
+
+        for (int i = 0; i < GameActivity.screen[type].buttons.length; i++){
+            JSONObject jo = views.getJSONObject(param);
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(jo.getInt("height")));
+            p.leftMargin = newWidth(jo.getInt("left"));
+            p.topMargin = newHeight(jo.getInt("top"));
+            GameActivity.screen[type].buttons[i].setText(jo.getString("text"));
+            GameActivity.screen[type].buttons[i].setLayoutParams(p);
+            GameActivity.screen[type].layout.addView(GameActivity.screen[type].buttons[i]);
+            param++;
+        }
+
+        for (int i = 0; i < GameActivity.screen[type].imageViews.length; i++){
+            JSONObject jo = views.getJSONObject(param);
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(jo.getInt("height")));
+            p.leftMargin = newWidth(jo.getInt("left"));
+            p.topMargin = newHeight(jo.getInt("top"));
+            String mDrawableName = jo.getString("imageName");
+            int resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName());
+            GameActivity.screen[type].imageViews[i].setImageResource(resID);
+            GameActivity.screen[type].imageViews[i].setLayoutParams(p);
+            GameActivity.screen[type].layout.addView(GameActivity.screen[type].buttons[i]);
+            param++;
+        }
+
+        for (int i = 0; i < GameActivity.screen[type].videoViews.length; i++){
+            JSONObject jo = views.getJSONObject(param);
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(jo.getInt("height")));
+            p.leftMargin = newWidth(jo.getInt("left"));
+            p.topMargin = newHeight(jo.getInt("top"));
+            String mDrawableName = jo.getString("imageName");
+            int resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName());
+            //GameActivity.screen[type].videoViews[i].set   //todo:опять забыла, как указать имя видеофайла
+            GameActivity.screen[type].videoViews[i].setLayoutParams(p);
+            GameActivity.screen[type].layout.addView(GameActivity.screen[type].videoViews[i]);
+            param++;
+        }
+        /*switch(currentType){
             case "PrintText":{
                 ScreenTypes.PrintText s = new ScreenTypes.PrintText();
                 s.text = currentScreen.getString("blockText");
@@ -117,10 +176,11 @@ public class FileWork extends MainActivity{
                 break;
             }
             default: break;
-        }
+        }*/
         JSONObject saveObject = makeJsonSaveObject(currentSave);
         System.out.println(saveObject);
         writeSaveFile(saveObject.toString(), context);
+        return type;
     }
 
     public static String readScript(Activity activity) throws IOException {
@@ -162,5 +222,13 @@ public class FileWork extends MainActivity{
         FileOutputStream fos = new FileOutputStream(file);
         fos.write(save.getBytes());
         fos.close();
+    }
+
+    public static int newWidth(int nc){
+        return nc*GameActivity.widthScreen/GameActivity.gridWidth;
+    }
+
+    public static int newHeight(int nc){
+        return nc*GameActivity.heightScreen/GameActivity.gridHeight;
     }
 }

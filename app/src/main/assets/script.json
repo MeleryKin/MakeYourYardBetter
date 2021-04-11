@@ -4,66 +4,89 @@
   "ChapterID": [10, 150],
   "ScreenID10": {
     "nextID": 20,
-    "screenType": "PrintText",
-    "blockText": "«Не знаю, как у вас, а у нас всегда кто-то сверлит. Может, взять скинуться, чтобы они перестали сверлить, - цитата Бориса Гребенщикова»."
+    "screenType": 0,
+    "views": [
+      {
+        "text": "«Не знаю, как у вас, а у нас всегда кто-то сверлит. Может, взять скинуться, чтобы они перестали сверлить, - цитата Бориса Гребенщикова».",
+        "width": 150,
+        "height": 80,
+        "top": 80,
+        "left": 70
+      }
+    ]
   },
   "ScreenID20": {
     "nextID": 30,
-    "screenType": "ImageWithText",
+    "screenType": 1,
     "imageName": "ph1",
-    "blockText": "«Глава 1. «Мой дом – моя крепость»"
+    "views": [
+      {
+        "text": "«Глава 1. «Мой дом – моя крепость»",
+        "width": 150,
+        "height": 60,
+        "top": 130,
+        "left": 45
+      },
+      {
+        "imageName": "ph1",
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      }
+    ]
   },
   "ScreenID30": {
     "nextID": 40,
-    "screenType": "ImageWithText",
+    "screenType": 1,
     "imageName": "ph1",
     "blockText": "«Шёл уютный осенний вечер»"
   },
   "ScreenID40": {
     "nextID": 50,
-    "screenType": "ImageWithText",
+    "screenType": 1,
     "imageName": "ph1",
     "blockText": "«Каждый в доме был занят своим делом»"
   },
   "ScreenID50": {
     "nextID": 60,
-    "screenType": "ImageWithText",
+    "screenType": 1,
     "imageName": "ph1",
     "blockText": "«Всё предвещало отличный вечер»"
   },
   "ScreenID60": {
     "nextID": 70,
-    "screenType": "ImageWithText",
+    "screenType": 1,
     "imageName": "ph1",
     "blockText": "Но вдруг..."
   },
   "ScreenID70": {
     "nextID": 80,
-    "screenType": "ImageWithText",
+    "screenType": 1,
     "imageName": "ph1",
     "blockText": ""
   },
   "ScreenID80": {
     "nextID": 90,
-    "screenType": "ImageWithText",
-    "imageName": "ph1",
+    "screenType": 1,
+    "imageName": "ph2",
     "blockText": ""
   },
   "ScreenID90": {
     "nextID": 100,
-    "screenType": "ImageWithText",
+    "screenType": 1,
     "imageName": "ph1",
     "blockText": ""
   },
   "ScreenID100": {
     "nextID": 110,
-    "screenType": "ImageWithText",
+    "screenType": 1,
     "imageName": "ph1",
     "blockText": "«\"Ух, ах, хрясь, бдыщ\"»"
   },
   "ScreenID110": {
     "nextID": -1,
-    "screenType": "ImageWithButtons",
+    "screenType": 1,
     "buttonsCount": 1,
     "imageName": "ph1",
     "blockText": "",
@@ -72,7 +95,7 @@
   },
   "ScreenID120": {
     "nextID": -1,
-    "screenType": "ImageWithButtons",
+    "screenType": 3,
     "imageName": "ph1",
     "buttonsCount": 3,
     "buttonID1": 130,
@@ -85,13 +108,13 @@
   },
   "ScreenID130": {
     "nextID": 150,
-    "screenType": "ImageWithText",
+    "screenType": 1,
     "imageName": "ph1",
     "blockText": "«Спокойной ночи»"
   },
   "ScreenID140": {
     "nextID": 150,
-    "screenType": "ImageWithText",
+    "screenType": 1,
     "imageName": "ph1",
     "blockText": "«СЕБЕ ПОСВЕРЛИ!!!»"
   }

@@ -20,17 +20,17 @@ public class SaveStruct {
             ac[i] = false;
         }
         JSONArray jsonArray = root.getJSONArray("ChapterID");
-        chProcess = new int [jsonArray.length()-1];
-        for (int i = 0; i < jsonArray.length()-1; i++){
+        chProcess = new int [jsonArray.length() - 1];
+        for (int i = 0; i < jsonArray.length() - 1; i++){
             chProcess[i] = jsonArray.getInt(i);
         }
-        chAvail = new boolean [jsonArray.length()-1];
+        chAvail = new boolean [jsonArray.length() - 1];
         chAvail[0] = true;
-        for (int i = 1; i < jsonArray.length()-1; i++){
+        for (int i = 1; i < jsonArray.length() - 1; i++){
             chAvail[i] = false;
         }
-        chPoints = new int [jsonArray.length()-1];
-        for (int i = 0; i < jsonArray.length()-1; i++){
+        chPoints = new int [jsonArray.length() - 1];
+        for (int i = 0; i < jsonArray.length() - 1; i++){
             chPoints[i] = 0;
         }
     }
