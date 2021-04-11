@@ -87,8 +87,7 @@ public class FileWork extends MainActivity{
             }
             case "ImageWithButtons":{
                 imageView1.setVisibility(View.VISIBLE);
-                int imageID = currentScreen.getInt("imageID");
-                String mDrawableName = "ph" + imageID;
+                String mDrawableName = currentScreen.getString("imageName");
                 int resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName());
                 imageView1.setImageResource(resID);
                 int butCount = currentScreen.getInt("buttonsCount");
@@ -110,8 +109,7 @@ public class FileWork extends MainActivity{
             case "ImageWithText":{
                 String s = currentScreen.getString("blockText");
                 textView1.setText(s);
-                int imageID = currentScreen.getInt("imageID");
-                String mDrawableName = "ph" + imageID;
+                String mDrawableName = currentScreen.getString("imageName");
                 int resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName());
                 imageView1.setImageResource(resID);
                 textView1.setVisibility(View.VISIBLE);
@@ -144,7 +142,6 @@ public class FileWork extends MainActivity{
         }
         return ans;
     }
-
 
     public static String readSaveFile(Context context) throws IOException {
         File file = new File(context.getFilesDir(), "save.json");

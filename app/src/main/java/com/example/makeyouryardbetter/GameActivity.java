@@ -40,12 +40,12 @@ public class GameActivity extends AppCompatActivity {
             chapterCount = jsonObjectScript.getInt("ChapterCount");
             save = new SaveStruct(masAchSize, jsonObjectScript);
 
-            textView1 = (TextView)findViewById(R.id.textView);
-            textView2 = (TextView)findViewById(R.id.textView2);
-            button1 = (Button)findViewById(R.id.button);
-            button2 = (Button)findViewById(R.id.button2);
-            button3 = (Button)findViewById(R.id.button3);
-            imageView1 = (ImageView)findViewById(R.id.imageView);
+            textView1 = findViewById(R.id.textView);
+            textView2 = findViewById(R.id.textView2);
+            button1 = findViewById(R.id.button);
+            button2 = findViewById(R.id.button2);
+            button3 = findViewById(R.id.button3);
+            imageView1 = findViewById(R.id.imageView);
 
             String s = FileWork.readSaveFile(this);
             JSONObject saveObject = new JSONObject(s);
