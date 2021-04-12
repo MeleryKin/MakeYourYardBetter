@@ -20,101 +20,280 @@
     "screenType": 1,
     "views": [
       {
-        "text": "«Глава 1. «Мой дом – моя крепость»",
-        "width": 160,
-        "height": 60,
-        "top": 0,
-        "left": 40
-      },
-      {
-        "imageName": "ph1",
+        "imageName": "ph2",
         "width": 240,
         "height": 320,
         "top": 0,
         "left": 0
+      },
+      {
+        "text": "«Глава 1. «Мой дом – моя крепость»",
+        "width": 160,
+        "height": 60,
+        "top": 160,
+        "left": 40
       }
     ]
   },
   "ScreenID30": {
     "nextID": 40,
     "screenType": 1,
-    "imageName": "ph1",
-    "blockText": "«Шёл уютный осенний вечер»"
+    "views": [
+      {
+        "imageName": "ph1",
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      },
+      {
+        "text": "«Шёл уютный осенний вечер»",
+        "width": 180,
+        "height": 30,
+        "top": 270,
+        "left": 30
+      }
+    ]
   },
   "ScreenID40": {
     "nextID": 50,
     "screenType": 1,
-    "imageName": "ph1",
-    "blockText": "«Каждый в доме был занят своим делом»"
+    "views": [
+      {
+        "imageName": "ph1",
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      },
+      {
+        "text": "«Каждый в доме был занят своим делом»",
+        "width": 180,
+        "height": 30,
+        "top": 270,
+        "left": 30
+      }
+    ]
   },
   "ScreenID50": {
     "nextID": 60,
     "screenType": 1,
-    "imageName": "ph1",
-    "blockText": "«Всё предвещало отличный вечер»"
+    "views": [
+      {
+        "imageName": "ph1",
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      },
+      {
+        "text":  "«Всё предвещало отличный вечер»",
+        "width": 180,
+        "height": 30,
+        "top": 270,
+        "left": 30
+      }
+    ]
   },
   "ScreenID60": {
     "nextID": 70,
     "screenType": 1,
-    "imageName": "ph1",
-    "blockText": "Но вдруг..."
+    "views": [
+      {
+        "imageName": "ph1",
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      },
+      {
+        "text": "Но вдруг...",
+        "width": 180,
+        "height": 30,
+        "top": 270,
+        "left": 30
+      }
+    ]
   },
   "ScreenID70": {
     "nextID": 80,
     "screenType": 1,
-    "imageName": "ph1",
-    "blockText": ""
+    "views": [
+      {
+        "imageName": "ph1",
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      },
+      {
+        "text": "",
+        "width": 180,
+        "height": 30,
+        "top": 270,
+        "left": 30
+      }
+    ]
   },
   "ScreenID80": {
     "nextID": 90,
     "screenType": 1,
-    "imageName": "ph2",
-    "blockText": ""
+    "views": [
+      {
+        "imageName": "ph1",
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      },
+      {
+        "text": "",
+        "width": 180,
+        "height": 30,
+        "top": 270,
+        "left": 30
+      }
+    ]
   },
   "ScreenID90": {
     "nextID": 100,
     "screenType": 1,
-    "imageName": "ph1",
-    "blockText": ""
+    "views": [
+      {
+        "imageName": "ph1",
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      },
+      {
+        "text": "",
+        "width": 180,
+        "height": 30,
+        "top": 270,
+        "left": 30
+      }
+    ]
   },
   "ScreenID100": {
     "nextID": 110,
     "screenType": 1,
-    "imageName": "ph1",
-    "blockText": "«\"Ух, ах, хрясь, бдыщ\"»"
+    "views": [
+      {
+        "imageName": "ph1",
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      },
+      {
+        "text": "«\"Ух, ах, хрясь, бдыщ\"»",
+        "width": 180,
+        "height": 30,
+        "top": 270,
+        "left": 30
+      }
+    ]
   },
   "ScreenID110": {
-    "nextID": -1,
+    "nextID": 120,
     "screenType": 1,
-    "buttonsCount": 1,
-    "imageName": "ph1",
-    "blockText": "",
-    "buttonID2": 120,
-    "buttonText2": "«простое решение - поменяйся контактами с соседом.» "
+    "views": [
+      {
+        "imageName": "ph1",
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      },
+      {
+        "text": "«простое решение - поменяйся контактами с соседом.» ",
+        "width": 180,
+        "height": 30,
+        "top": 270,
+        "left": 30
+      }
+    ]
   },
   "ScreenID120": {
-    "nextID": -1,
     "screenType": 3,
-    "imageName": "ph1",
-    "buttonsCount": 3,
-    "buttonID1": 130,
-    "buttonID2": 130,
-    "buttonID3": 140,
-    "blockText": "«Привет, сосед! Мне надо пошуметь перфоратором минут 5. Не помешаю?»",
-    "buttonText1": "«Ок. Не проблема. Я уйду погулять.» ",
-    "buttonText2": "«Помешаешь. У меня ребёнок спит. Давай завтра?» ",
-    "buttonText3": "«Проигнорировать» "
+    "nextID": [130, 130, 140],
+    "views": [
+      {
+        "imageName": "ph1",
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      },
+      {
+        "text": "«Ок. Не проблема. Я уйду погулять.» ",
+        "width": 180,
+        "height": 30,
+        "top": 190,
+        "left": 30
+      },
+      {
+        "text": "«Помешаешь. У меня ребёнок спит. Давай завтра?» ",
+        "width": 180,
+        "height": 30,
+        "top": 230,
+        "left": 30
+      },
+      {
+        "text": "«Проигнорировать» ",
+        "width": 180,
+        "height": 30,
+        "top": 270,
+        "left": 30
+      },
+      {
+        "text": "«Привет, сосед! Мне надо пошуметь перфоратором минут 5. Не помешаю?»",
+        "width": 180,
+        "height": 30,
+        "top": 140,
+        "left": 30
+      }
+    ]
   },
   "ScreenID130": {
     "nextID": 150,
     "screenType": 1,
-    "imageName": "ph1",
-    "blockText": "«Спокойной ночи»"
+    "views": [
+      {
+        "imageName": "ph1",
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      },
+      {
+        "text": "«Спокойной ночи»",
+        "width": 180,
+        "height": 30,
+        "top": 270,
+        "left": 30
+      }
+    ]
   },
   "ScreenID140": {
     "nextID": 150,
     "screenType": 1,
-    "imageName": "ph1",
-    "blockText": "«СЕБЕ ПОСВЕРЛИ!!!»"
+    "views": [
+      {
+        "imageName": "ph1",
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      },
+      {
+        "text": "«СЕБЕ ПОСВЕРЛИ!!!»",
+        "width": 180,
+        "height": 30,
+        "top": 270,
+        "left": 30
+      }
+    ]
   }
 }

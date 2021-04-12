@@ -30,6 +30,7 @@ public class GameActivity extends AppCompatActivity {
     static ScreenTypes[] screen;
     public static int widthScreen, heightScreen;
     public static int gridWidth = 240, gridHeight = 320;
+    public static int buttonBaseID = 37500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,39 @@ public class GameActivity extends AppCompatActivity {
                     }
                 }
             };
+            View.OnClickListener buttonClick = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        JSONObject currentScreen = jsonObjectScript.getJSONObject("ScreenID" + save.chProcess[save.curChapter]);
+                        JSONArray next = currentScreen.getJSONArray("nextID");
+                        save.chProcess[save.curChapter] = next.getInt(v.getId() - buttonBaseID);
+                        int[] chapterID = FileWork.getChapterIDArray(jsonObjectScript);
+                        boolean f = true;
+                        int chapterCount = jsonObjectScript.getInt("ChapterCount");
+                        if (save.chProcess[save.curChapter] == chapterID[save.curChapter + 1]) {
+                            if (save.curChapter == (chapterCount - 1)) {
+                                Intent intent = new Intent(GameActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                f = false;
+                            }
+                            else {
+                                save.curChapter++;
+                                save.chProcess[save.curChapter] = chapterID[save.curChapter];
+                                save.chAvail[save.curChapter] = true;
+                            }
+                        }
+                        JSONObject saveObject = FileWork.makeJsonSaveObject(save);
+                        System.out.println(saveObject);
+                        FileWork.writeSaveFile(saveObject.toString(), GameActivity.this);
+                        if (f)  setContentView(screen[FileWork.outParameters(GameActivity.this, jsonObjectScript, save)].layout,
+                                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                    }
+                    catch(Exception e)  {
+                        e.printStackTrace();
+                    }
+                }
+            };
             for (int i = 0; i < jsonGameTypes.length(); i++){
                 JSONArray x = jsonGameTypes.getJSONArray(i);
                 int[] m = new int[x.length()];
@@ -94,6 +128,10 @@ public class GameActivity extends AppCompatActivity {
                     for (int j = 0; j < screen[i].imageViews.length; j++) {
                         screen[i].imageViews[j].setOnClickListener(click);
                     }
+                }
+                for (int j = 0; j < screen[i].buttons.length; j++){
+                    screen[i].buttons[j].setId(buttonBaseID + j);
+                    screen[i].buttons[j].setOnClickListener(buttonClick);
                 }
             }
             jsonStringScript = FileWork.readScript(this);
@@ -111,14 +149,6 @@ public class GameActivity extends AppCompatActivity {
         catch(Exception e)  {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-         //     System.out.println("lalala");
-        }
-        return super.onTouchEvent(event);
     }
 
     public void onPictureClick(View view) {

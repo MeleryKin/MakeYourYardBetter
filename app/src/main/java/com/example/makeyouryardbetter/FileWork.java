@@ -3,6 +3,7 @@ package com.example.makeyouryardbetter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -81,33 +82,20 @@ public class FileWork extends MainActivity{
         System.out.println("iv"+GameActivity.screen[type].imageViews.length);
         System.out.println("b"+GameActivity.screen[type].buttons.length);
         System.out.println("vv"+GameActivity.screen[type].videoViews.length);
-        for (int i = 0; i < GameActivity.screen[type].textViews.length; i++){
-            System.out.println("AAAAAAAAAAAAAAAA");
-            JSONObject jo = views.getJSONObject(param);
-            int t = jo.getInt("height");
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(t));
-            p.leftMargin = newWidth(jo.getInt("left"));
-            p.topMargin = newHeight(jo.getInt("top") - base);
-            System.out.println(p.topMargin);
-            System.out.println(base);
-            base = t;
-            System.out.println(base);
-            GameActivity.screen[type].textViews[i].setText(jo.getString("text"));
-            GameActivity.screen[type].textViews[i].setLayoutParams(p);
-            GameActivity.screen[type].layout.addView(GameActivity.screen[type].textViews[i]);
-            param++;
-        }
 
-        for (int i = 0; i < GameActivity.screen[type].buttons.length; i++){
+        for (int i = 0; i < GameActivity.screen[type].videoViews.length; i++){
             JSONObject jo = views.getJSONObject(param);
             int t = jo.getInt("height");
             LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(t));
             p.leftMargin = newWidth(jo.getInt("left"));
-            p.topMargin = newHeight(jo.getInt("top") - base);
-            base = t;
-            GameActivity.screen[type].buttons[i].setText(jo.getString("text"));
-            GameActivity.screen[type].buttons[i].setLayoutParams(p);
-            GameActivity.screen[type].layout.addView(GameActivity.screen[type].buttons[i]);
+            int t1 = jo.getInt("top");
+            p.topMargin = newHeight(t1 - base);
+            base = t + t1;
+            String mDrawableName = jo.getString("imageName");
+            int resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName());
+            //GameActivity.screen[type].videoViews[i].set   //todo:опять забыла, как указать имя видеофайла
+            GameActivity.screen[type].videoViews[i].setLayoutParams(p);
+            GameActivity.screen[type].layout.addView(GameActivity.screen[type].videoViews[i]);
             param++;
         }
 
@@ -116,10 +104,9 @@ public class FileWork extends MainActivity{
             int t = jo.getInt("height");
             LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(t));
             p.leftMargin = newWidth(jo.getInt("left"));
-            p.topMargin = newHeight(jo.getInt("top") - base);
-            System.out.println(p.topMargin);
-            System.out.println(base);
-            base = t;
+            int t1 = jo.getInt("top");
+            p.topMargin = newHeight(t1 - base);
+            base = t + t1;
             System.out.println(base);
             String mDrawableName = jo.getString("imageName");
             int resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName());
@@ -129,78 +116,36 @@ public class FileWork extends MainActivity{
             param++;
         }
 
-        for (int i = 0; i < GameActivity.screen[type].videoViews.length; i++){
+        for (int i = 0; i < GameActivity.screen[type].buttons.length; i++){
             JSONObject jo = views.getJSONObject(param);
             int t = jo.getInt("height");
             LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(t));
             p.leftMargin = newWidth(jo.getInt("left"));
-            p.topMargin = newHeight(jo.getInt("top") - base);
-            base = t;
-            String mDrawableName = jo.getString("imageName");
-            int resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName());
-            //GameActivity.screen[type].videoViews[i].set   //todo:опять забыла, как указать имя видеофайла
-            GameActivity.screen[type].videoViews[i].setLayoutParams(p);
-            GameActivity.screen[type].layout.addView(GameActivity.screen[type].videoViews[i]);
+            int t1 = jo.getInt("top");
+            p.topMargin = newHeight(t1 - base);
+            base = t + t1;
+            GameActivity.screen[type].buttons[i].setText(jo.getString("text"));
+            GameActivity.screen[type].buttons[i].setLayoutParams(p);
+            GameActivity.screen[type].layout.addView(GameActivity.screen[type].buttons[i]);
             param++;
         }
 
-       /* for (int i = 0; i < GameActivity.screen[type].textViews.length; i++){
-            GameActivity.screen[type].textViews[i].bringToFront();
+        for (int i = 0; i < GameActivity.screen[type].textViews.length; i++){
+            JSONObject jo = views.getJSONObject(param);
+            int t = jo.getInt("height");
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(t));
+            p.leftMargin = newWidth(jo.getInt("left"));
+            int t1 = jo.getInt("top");
+            p.topMargin = newHeight(t1 - base);
+            base = t + t1;
+            System.out.println(base);
+            GameActivity.screen[type].textViews[i].setText(jo.getString("text"));
+            GameActivity.screen[type].textViews[i].setLayoutParams(p);
+            GameActivity.screen[type].layout.addView(GameActivity.screen[type].textViews[i]);
+            GameActivity.screen[type].textViews[i].setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+            param++;
         }
 
-        /*switch(currentType){
-            case "PrintText":{
-                ScreenTypes.PrintText s = new ScreenTypes.PrintText();
-                s.text = currentScreen.getString("blockText");
-                textView1.setText(s.text);
-                textView1.setVisibility(View.VISIBLE);
-                break;
-            }
-            case "ImageSlide":
-            {
-                ScreenTypes.ImageSlide s = new ScreenTypes.ImageSlide();
-                s.coordX = currentScreen.getInt("coordX");
-                s.coordY =  currentScreen.getInt("coordY");
-                s.text = currentScreen.getString("blockText");
-                break;
-            }
-            case "ImageScreen":{
-
-                break;
-            }
-            case "ImageWithButtons":{
-                imageView1.setVisibility(View.VISIBLE);
-                String mDrawableName = currentScreen.getString("imageName");
-                int resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName());
-                imageView1.setImageResource(resID);
-                int butCount = currentScreen.getInt("buttonsCount");
-                textView2.setVisibility(View.VISIBLE);
-                String s = currentScreen.getString("blockText");
-                textView2.setText(s);
-                button2.setVisibility(View.VISIBLE);
-                s = currentScreen.getString("buttonText2");
-                button2.setText(s);
-                if (butCount==1) break;
-                s = currentScreen.getString("buttonText1");
-                button1.setText(s);
-                s = currentScreen.getString("buttonText3");
-                button3.setText(s);
-                button1.setVisibility(View.VISIBLE);
-                button3.setVisibility(View.VISIBLE);
-                break;
-            }
-            case "ImageWithText":{
-                String s = currentScreen.getString("blockText");
-                textView1.setText(s);
-                String mDrawableName = currentScreen.getString("imageName");
-                int resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName());
-                imageView1.setImageResource(resID);
-                textView1.setVisibility(View.VISIBLE);
-                imageView1.setVisibility(View.VISIBLE);
-                break;
-            }
-            default: break;
-        }*/
         JSONObject saveObject = makeJsonSaveObject(currentSave);
         System.out.println(saveObject);
         writeSaveFile(saveObject.toString(), context);
