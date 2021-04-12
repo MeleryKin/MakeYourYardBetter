@@ -18,19 +18,19 @@ public class ScreenTypes {
     public ScreenTypes(Context context, int[] componentCount) {
         layout = new LinearLayout(context);
         textViews = new TextView[componentCount[0]];
-        for (int i=0;i<componentCount[0];i++){
+        for (int i = 0; i < componentCount[0]; i++){
             textViews[i] = new TextView(context);
         }
         buttons = new Button[componentCount[1]];
-        for (int i=0;i<componentCount[1];i++){
+        for (int i = 0; i < componentCount[1]; i++){
             buttons[i] = new Button(context);
         }
         imageViews = new ImageView[componentCount[2]];
-        for (int i=0;i<componentCount[2];i++){
+        for (int i = 0; i < componentCount[2]; i++){
             imageViews[i] = new ImageView(context);
         }
         videoViews = new VideoView[componentCount[3]];
-        for (int i=0;i<componentCount[3];i++){
+        for (int i = 0; i < componentCount[3]; i++){
             videoViews[i] = new VideoView(context);
         }
     }

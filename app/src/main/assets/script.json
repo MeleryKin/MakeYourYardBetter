@@ -18,14 +18,13 @@
   "ScreenID20": {
     "nextID": 30,
     "screenType": 1,
-    "imageName": "ph1",
     "views": [
       {
         "text": "«Глава 1. «Мой дом – моя крепость»",
-        "width": 150,
+        "width": 160,
         "height": 60,
-        "top": 130,
-        "left": 45
+        "top": 0,
+        "left": 40
       },
       {
         "imageName": "ph1",

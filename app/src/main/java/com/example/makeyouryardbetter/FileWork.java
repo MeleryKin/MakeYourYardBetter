@@ -70,18 +70,28 @@ public class FileWork extends MainActivity{
         JSONObject currentScreen = jsonRoot.getJSONObject("ScreenID" + c);
         System.out.println(currentScreen);
         int type = currentScreen.getInt("screenType");
-        //ScreenTypes curType = GameActivity.screen[type];
         JSONArray views = currentScreen.getJSONArray("views");
         int param = 0;
+        int base = 0;
 
         GameActivity.screen[type].layout.removeAllViews();
 
+        System.out.println(type);
+        System.out.println("tv"+GameActivity.screen[type].textViews.length);
+        System.out.println("iv"+GameActivity.screen[type].imageViews.length);
+        System.out.println("b"+GameActivity.screen[type].buttons.length);
+        System.out.println("vv"+GameActivity.screen[type].videoViews.length);
         for (int i = 0; i < GameActivity.screen[type].textViews.length; i++){
+            System.out.println("AAAAAAAAAAAAAAAA");
             JSONObject jo = views.getJSONObject(param);
-            System.out.println(jo.toString());
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(jo.getInt("height")));
+            int t = jo.getInt("height");
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(t));
             p.leftMargin = newWidth(jo.getInt("left"));
-            p.topMargin = newHeight(jo.getInt("top"));
+            p.topMargin = newHeight(jo.getInt("top") - base);
+            System.out.println(p.topMargin);
+            System.out.println(base);
+            base = t;
+            System.out.println(base);
             GameActivity.screen[type].textViews[i].setText(jo.getString("text"));
             GameActivity.screen[type].textViews[i].setLayoutParams(p);
             GameActivity.screen[type].layout.addView(GameActivity.screen[type].textViews[i]);
@@ -90,9 +100,11 @@ public class FileWork extends MainActivity{
 
         for (int i = 0; i < GameActivity.screen[type].buttons.length; i++){
             JSONObject jo = views.getJSONObject(param);
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(jo.getInt("height")));
+            int t = jo.getInt("height");
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(t));
             p.leftMargin = newWidth(jo.getInt("left"));
-            p.topMargin = newHeight(jo.getInt("top"));
+            p.topMargin = newHeight(jo.getInt("top") - base);
+            base = t;
             GameActivity.screen[type].buttons[i].setText(jo.getString("text"));
             GameActivity.screen[type].buttons[i].setLayoutParams(p);
             GameActivity.screen[type].layout.addView(GameActivity.screen[type].buttons[i]);
@@ -101,22 +113,29 @@ public class FileWork extends MainActivity{
 
         for (int i = 0; i < GameActivity.screen[type].imageViews.length; i++){
             JSONObject jo = views.getJSONObject(param);
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(jo.getInt("height")));
+            int t = jo.getInt("height");
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(t));
             p.leftMargin = newWidth(jo.getInt("left"));
-            p.topMargin = newHeight(jo.getInt("top"));
+            p.topMargin = newHeight(jo.getInt("top") - base);
+            System.out.println(p.topMargin);
+            System.out.println(base);
+            base = t;
+            System.out.println(base);
             String mDrawableName = jo.getString("imageName");
             int resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName());
             GameActivity.screen[type].imageViews[i].setImageResource(resID);
             GameActivity.screen[type].imageViews[i].setLayoutParams(p);
-            GameActivity.screen[type].layout.addView(GameActivity.screen[type].buttons[i]);
+            GameActivity.screen[type].layout.addView(GameActivity.screen[type].imageViews[i]);
             param++;
         }
 
         for (int i = 0; i < GameActivity.screen[type].videoViews.length; i++){
             JSONObject jo = views.getJSONObject(param);
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(jo.getInt("height")));
+            int t = jo.getInt("height");
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(newWidth(jo.getInt("width")), newHeight(t));
             p.leftMargin = newWidth(jo.getInt("left"));
-            p.topMargin = newHeight(jo.getInt("top"));
+            p.topMargin = newHeight(jo.getInt("top") - base);
+            base = t;
             String mDrawableName = jo.getString("imageName");
             int resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName());
             //GameActivity.screen[type].videoViews[i].set   //todo:опять забыла, как указать имя видеофайла
@@ -124,6 +143,11 @@ public class FileWork extends MainActivity{
             GameActivity.screen[type].layout.addView(GameActivity.screen[type].videoViews[i]);
             param++;
         }
+
+       /* for (int i = 0; i < GameActivity.screen[type].textViews.length; i++){
+            GameActivity.screen[type].textViews[i].bringToFront();
+        }
+
         /*switch(currentType){
             case "PrintText":{
                 ScreenTypes.PrintText s = new ScreenTypes.PrintText();
