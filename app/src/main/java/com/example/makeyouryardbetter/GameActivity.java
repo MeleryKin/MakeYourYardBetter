@@ -10,6 +10,8 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -31,6 +33,7 @@ public class GameActivity extends AppCompatActivity {
     public static int widthScreen, heightScreen;
     public static int gridWidth = 240, gridHeight = 320;
     public static int buttonBaseID = 37500;
+    Animation animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class GameActivity extends AppCompatActivity {
         display.getSize(size);
         widthScreen = size.x;
         heightScreen = size.y;
+        animation = AnimationUtils.loadAnimation(this, R.anim.myalpha);
 
         try {
             String stringConfig = FileWork.readConfig(this);
@@ -54,6 +58,9 @@ public class GameActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     try {
+                        if (!animation.hasEnded()) {
+                            return;
+                        }
                         JSONObject currentScreen = jsonObjectScript.getJSONObject("ScreenID" + save.chProcess[save.curChapter]);
                         int newID = currentScreen.getInt("nextID");
                         save.chProcess[save.curChapter] = newID;
@@ -74,8 +81,12 @@ public class GameActivity extends AppCompatActivity {
                         }
                         JSONObject saveObject = FileWork.makeJsonSaveObject(save);
                         FileWork.writeSaveFile(saveObject.toString(), GameActivity.this);
-                        if (f)  setContentView(screen[FileWork.outParameters(GameActivity.this, jsonObjectScript, save)].layout,
-                                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                        if (f)  {
+                            int l = FileWork.outParameters(GameActivity.this, jsonObjectScript, save);
+                            setContentView(screen[l].layout,
+                                    new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)); //вывод полученных данных
+                            screen[l].layout.startAnimation(animation);
+                        }
                     }
                     catch (Exception e){
                         e.printStackTrace();
@@ -86,6 +97,9 @@ public class GameActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     try {
+                        if (!animation.hasEnded()) {
+                            return;
+                        }
                         JSONObject currentScreen = jsonObjectScript.getJSONObject("ScreenID" + save.chProcess[save.curChapter]);
                         JSONArray next = currentScreen.getJSONArray("nextID");
                         save.chProcess[save.curChapter] = next.getInt(v.getId() - buttonBaseID);
@@ -107,8 +121,12 @@ public class GameActivity extends AppCompatActivity {
                         JSONObject saveObject = FileWork.makeJsonSaveObject(save);
                         System.out.println(saveObject);
                         FileWork.writeSaveFile(saveObject.toString(), GameActivity.this);
-                        if (f)  setContentView(screen[FileWork.outParameters(GameActivity.this, jsonObjectScript, save)].layout,
-                                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                        if (f)  {
+                            int l = FileWork.outParameters(GameActivity.this, jsonObjectScript, save);
+                            setContentView(screen[l].layout,
+                                    new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)); //вывод полученных данных
+                            screen[l].layout.startAnimation(animation);
+                        }
                     }
                     catch(Exception e)  {
                         e.printStackTrace();
@@ -143,83 +161,10 @@ public class GameActivity extends AppCompatActivity {
             String s = FileWork.readSaveFile(this);
             JSONObject saveObject = new JSONObject(s);
             save.FormSaveStruct(saveObject);
-            setContentView(screen[FileWork.outParameters(this, jsonObjectScript, save)].layout,
+            int l = FileWork.outParameters(this, jsonObjectScript, save);
+            setContentView(screen[l].layout,
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)); //вывод полученных данных
-        }
-        catch(Exception e)  {
-            e.printStackTrace();
-        }
-    }
-
-    public void onPictureClick(View view) {
-        try {
-            JSONObject currentScreen = jsonObjectScript.getJSONObject("ScreenID" + save.chProcess[save.curChapter]);
-            int newID = currentScreen.getInt("nextID");
-            if (newID > 0) {
-                save.chProcess[save.curChapter] = newID;
-                int[] chapterID = FileWork.getChapterIDArray(jsonObjectScript);
-                boolean f = true;
-                int chapterCount = jsonObjectScript.getInt("ChapterCount");
-                if (save.chProcess[save.curChapter] == chapterID[save.curChapter + 1]) {
-                    if (save.curChapter == (chapterCount - 1)) {
-                        Intent intent = new Intent(this, MainActivity.class);
-                        startActivity(intent);
-                        f = false;
-                    }
-                    else {
-                        save.curChapter++;
-                        save.chProcess[save.curChapter] = chapterID[save.curChapter];
-                        save.chAvail[save.curChapter] = true;
-                    }
-                }
-                JSONObject saveObject = FileWork.makeJsonSaveObject(save);
-                System.out.println(saveObject);
-                FileWork.writeSaveFile(saveObject.toString(), this);
-                if (f)  setContentView(screen[FileWork.outParameters(this, jsonObjectScript, save)].layout,
-                        new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-            }
-        }
-        catch(Exception e)  {
-            e.printStackTrace();
-        }
-    }
-
-    public void onButtonClick(View view) {
-        try {
-            JSONObject currentScreen = jsonObjectScript.getJSONObject("ScreenID" + save.chProcess[save.curChapter]);
-            switch (view.getId()) {
-                case R.id.button:
-                    save.chProcess[save.curChapter] = currentScreen.getInt("buttonID1");
-                    break;
-                case R.id.button2:
-                    save.chProcess[save.curChapter] = currentScreen.getInt("buttonID2");
-                    break;
-                case R.id.button3:
-                    save.chProcess[save.curChapter] = currentScreen.getInt("buttonID3");
-                    break;
-                default:
-                    break;
-            }
-            int[] chapterID = FileWork.getChapterIDArray(jsonObjectScript);
-            boolean f = true;
-            int chapterCount = jsonObjectScript.getInt("ChapterCount");
-            if (save.chProcess[save.curChapter] == chapterID[save.curChapter + 1]) {
-                if (save.curChapter == (chapterCount - 1)) {
-                    Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
-                    f = false;
-                }
-                else {
-                    save.curChapter++;
-                    save.chProcess[save.curChapter] = chapterID[save.curChapter];
-                    save.chAvail[save.curChapter] = true;
-                }
-            }
-            JSONObject saveObject = FileWork.makeJsonSaveObject(save);
-            System.out.println(saveObject);
-            FileWork.writeSaveFile(saveObject.toString(), this);
-            if (f)  setContentView(screen[FileWork.outParameters(this, jsonObjectScript, save)].layout,
-                    new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            screen[l].layout.startAnimation(animation);
         }
         catch(Exception e)  {
             e.printStackTrace();
