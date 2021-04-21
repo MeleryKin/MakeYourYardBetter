@@ -42,11 +42,6 @@ public class GameActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game);
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        widthScreen = size.x;
-        heightScreen = size.y;
         animation = AnimationUtils.loadAnimation(this, R.anim.myalpha);
 
         try {
@@ -162,6 +157,11 @@ public class GameActivity extends AppCompatActivity {
             JSONObject saveObject = new JSONObject(s);
             save.FormSaveStruct(saveObject);
             int l = FileWork.outParameters(this, jsonObjectScript, save);
+            //screen[l].layout
+
+            System.out.println(screen[l].layout.getWidth());
+            System.out.println(screen[l].textViews[0].getWidth());
+            System.out.println(screen[l].textViews[0].getLeft());
             setContentView(screen[l].layout,
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)); //вывод полученных данных
             screen[l].layout.startAnimation(animation);
