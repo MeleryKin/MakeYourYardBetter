@@ -77,12 +77,6 @@ public class FileWork extends MainActivity{
 
         GameActivity.screen[type].layout.removeAllViews();
 
-        System.out.println(type);
-        System.out.println("tv"+GameActivity.screen[type].textViews.length);
-        System.out.println("iv"+GameActivity.screen[type].imageViews.length);
-        System.out.println("b"+GameActivity.screen[type].buttons.length);
-        System.out.println("vv"+GameActivity.screen[type].videoViews.length);
-
         for (int i = 0; i < GameActivity.screen[type].videoViews.length; i++){
             JSONObject jo = views.getJSONObject(param);
             int t = jo.getInt("height");
@@ -141,6 +135,7 @@ public class FileWork extends MainActivity{
             System.out.println(base);
             GameActivity.screen[type].textViews[i].setText(jo.getString("text"));
             GameActivity.screen[type].textViews[i].setLayoutParams(p);
+        //    GameActivity.screen[type].textViews[i].setBackgroundColor(context.getResources().getColor(R.color.purple));
             GameActivity.screen[type].layout.addView(GameActivity.screen[type].textViews[i]);
             GameActivity.screen[type].textViews[i].setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
             param++;

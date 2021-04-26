@@ -2,6 +2,9 @@ package com.example.makeyouryardbetter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,9 +27,10 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout baseLayout;
-    LinearLayout menuLayout;
-    LinearLayout[] screensLayout;
+    public static LinearLayout baseLayout;
+    int idBaseLayout = 23948;
+    public static int currentFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,33 +47,21 @@ public class MainActivity extends AppCompatActivity {
         GameActivity.heightScreen = size.y;
 
         baseLayout = new LinearLayout(this);
-        menuLayout = new LinearLayout(this);
-        LinearLayout.LayoutParams menuParam = new LinearLayout.LayoutParams(FileWork.newWidth(240), FileWork.newHeight(40));
-        menuParam.leftMargin = FileWork.newWidth(0);
-        menuParam.topMargin = FileWork.newHeight(280);
-        menuLayout.setBackgroundColor(getResources().getColor(R.color.purple));
-        menuLayout.setLayoutParams(menuParam);
 
-        menuLayout.setOrientation(LinearLayout.VERTICAL);
         baseLayout.setOrientation(LinearLayout.VERTICAL);
+        baseLayout.setId(idBaseLayout);
 
-        ImageView[] menuButton = new ImageView[5];
-        int baseCoord = 5;
-        int lastCoord = 0;
-        for (int i = 0; i < 5; i++){
-            menuButton[i] = new ImageView(this);
-            String mDrawableName = "m" + (i + 1);
-            int resID = getResources().getIdentifier(mDrawableName, "drawable", getPackageName());
-            menuButton[i].setImageResource(resID);
-          //  menuButton[i].setBackgroundColor(getResources().getColor(R.color.black));
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(FileWork.newWidth(30), FileWork.newHeight(30));
-            p.topMargin = FileWork.newHeight(5-lastCoord);
-            lastCoord = 35;
-            p.leftMargin = FileWork.newWidth(baseCoord);
-            baseCoord += 50;
-            menuButton[i].setLayoutParams(p);
-            menuLayout.addView(menuButton[i]);
-        }
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        Fragment mainScreenFragment = new MainScreenFragment();
+        Fragment menuFragment = new AppMenuFragment();
+
+        ft.add(baseLayout.getId(), menuFragment);
+        ft.add(baseLayout.getId(), mainScreenFragment, "Cur");
+
+        ft.commit();
+        currentFragment = mainScreenFragment.getId();
+
 
         Button button = new Button(this);
         LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(FileWork.newWidth(100), FileWork.newHeight(60));
@@ -84,10 +77,8 @@ public class MainActivity extends AppCompatActivity {
         l1.setLayoutParams(bp);
        // l1.addView(button);
 
-        baseLayout.addView(menuLayout);
-        baseLayout.addView(button);
-
-        baseLayout.getViewTreeObserver();
+       // baseLayout.addView(menuLayout);
+        //baseLayout.addView(button);
 
         //    baseLayout.addView(l1);
         setContentView(baseLayout, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));

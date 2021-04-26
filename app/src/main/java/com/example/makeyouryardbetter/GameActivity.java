@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
@@ -147,6 +148,12 @@ public class GameActivity extends AppCompatActivity {
                     screen[i].buttons[j].setOnClickListener(buttonClick);
                 }
             }
+            for (int i=0;i<screen.length;i++){
+                for (int j=0;j<screen[i].textViews.length;i++){
+                    screen[i].textViews[j].setBackgroundColor(Color.WHITE);
+                }
+            }
+
             jsonStringScript = FileWork.readScript(this);
             jsonObjectScript = new JSONObject(jsonStringScript); //заполение объекта сценария
             masAchSize = jsonObjectScript.getInt("AchCount");
@@ -158,6 +165,7 @@ public class GameActivity extends AppCompatActivity {
             save.FormSaveStruct(saveObject);
             int l = FileWork.outParameters(this, jsonObjectScript, save);
             //screen[l].layout
+
 
             System.out.println(screen[l].layout.getWidth());
             System.out.println(screen[l].textViews[0].getWidth());
