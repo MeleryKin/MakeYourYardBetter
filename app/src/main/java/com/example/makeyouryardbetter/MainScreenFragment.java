@@ -3,10 +3,13 @@ package com.example.makeyouryardbetter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +25,7 @@ import org.w3c.dom.Text;
 
 public class MainScreenFragment extends Fragment {
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class MainScreenFragment extends Fragment {
             newGame.text.setText(butParam.getString("text"));
             newGame.text.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
             newGame.text.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            newGame.text.setAutoSizeTextTypeUniformWithConfiguration(1, 17,1, TypedValue.COMPLEX_UNIT_DIP);
             newGame.image.setBackgroundColor(Color.MAGENTA);
 
             View.OnClickListener newGameClick = new View.OnClickListener() {
@@ -88,6 +93,7 @@ public class MainScreenFragment extends Fragment {
             cont.text.setText(butParam.getString("text"));
             cont.text.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
             cont.text.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            cont.text.setAutoSizeTextTypeUniformWithConfiguration(1, 17,1, TypedValue.COMPLEX_UNIT_DIP);
             cont.image.setBackgroundColor(Color.MAGENTA);
 
             View.OnClickListener contClick = new View.OnClickListener() {
@@ -104,30 +110,6 @@ public class MainScreenFragment extends Fragment {
             layout.addView(cont.image);
 
 
-         /*   lastCoord = 0;
-            TextView t1 = new TextView(context);
-            butParam = inf.getJSONObject("newGameButton");
-            p = new LinearLayout.LayoutParams(FileWork.newWidth(butParam.getInt("width")), FileWork.newHeight(butParam.getInt("height")));
-            p.topMargin = FileWork.newHeight(butParam.getInt("top")) - lastCoord;
-            p.leftMargin = FileWork.newWidth(butParam.getInt("left"));
-            lastCoord = p.topMargin + p.height;
-            t1.setLayoutParams(p);
-            t1.setText(butParam.getString("text"));
-            t1.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-            t1.setBackgroundColor(getResources().getColor(R.color.purple));
-            layout.addView(t1);
-
-            TextView t2 = new TextView(context);
-            butParam = inf.getJSONObject("continueButton");
-            p = new LinearLayout.LayoutParams(FileWork.newWidth(butParam.getInt("width")), FileWork.newHeight(butParam.getInt("height")));
-            p.topMargin = FileWork.newHeight(butParam.getInt("top")) - lastCoord;
-            p.leftMargin = FileWork.newWidth(butParam.getInt("left"));
-            lastCoord = p.topMargin + p.height;
-            t2.setLayoutParams(p);
-            t2.setText(butParam.getString("text"));
-            t2.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-            t2.setBackgroundColor(getResources().getColor(R.color.purple));
-            layout.addView(t2);*/
             return layout;
         }
         catch (Exception e){

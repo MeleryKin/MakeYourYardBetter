@@ -37,7 +37,7 @@ public class AppMenuFragment extends Fragment {
             int countButtons = inf.getInt("countButtons");
             ImageView[] menuButton = new ImageView[countButtons];
 
-            l.setBackgroundColor(getResources().getColor(R.color.purple));
+            l.setBackgroundColor(getResources().getColor(R.color.white));
 
             JSONArray picInfArr = inf.getJSONArray("images");
             int lastCoord = 0;

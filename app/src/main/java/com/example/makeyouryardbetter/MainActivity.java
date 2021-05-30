@@ -56,12 +56,11 @@ public class MainActivity extends AppCompatActivity {
         Fragment mainScreenFragment = new MainScreenFragment();
         Fragment menuFragment = new AppMenuFragment();
 
-        ft.add(baseLayout.getId(), menuFragment);
+        ft.add(baseLayout.getId(), menuFragment, "menu");
         ft.add(baseLayout.getId(), mainScreenFragment, "Cur");
 
         ft.commit();
         currentFragment = mainScreenFragment.getId();
-
 
         Button button = new Button(this);
         LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(FileWork.newWidth(100), FileWork.newHeight(60));
@@ -77,23 +76,7 @@ public class MainActivity extends AppCompatActivity {
         l1.setLayoutParams(bp);
        // l1.addView(button);
 
-       // baseLayout.addView(menuLayout);
-        //baseLayout.addView(button);
-
-        //    baseLayout.addView(l1);
         setContentView(baseLayout, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-        /*LinearLayout main = new LinearLayout(this);
-        main.setBackgroundColor(getResources().getColor(R.color.purple));
-
-        LinearLayout l1 = new LinearLayout(this);
-        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(FileWork.newWidth(100), FileWork.newHeight(60));
-        p.topMargin = FileWork.newHeight(20);
-        p.leftMargin = FileWork.newWidth(60);
-        l1.setLayoutParams(p);
-        l1.setBackgroundColor(getResources().getColor(R.color.black));
-        main.addView(l1);
-
-        setContentView(main, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));*/
 
         File file = new File(this.getFilesDir(), "save.json");
         try {
@@ -105,15 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject saveObject = FileWork.makeJsonSaveObject(save);
                 FileWork.writeSaveFile(saveObject.toString(), this); //создание файла сохранения
             }
-            /*LinearLayout mainLayout = new LinearLayout(this);
-            mainLayout.setOrientation(LinearLayout.VERTICAL);
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(FileWork.newWidth(60), FileWork.newHeight(30));
-            String stringConfig = FileWork.readConfig(this);
-            JSONObject jsonConfig = new JSONObject(stringConfig);
-            JSONArray jsonGameTypes = jsonConfig.getJSONArray("gameScreenTypes");
 
-            LinearLayout l1 = new LinearLayout(this);
-            mainLayout.addView(l1);*/
         }
         catch(Exception e)  {
             e.printStackTrace();
@@ -125,12 +100,17 @@ public class MainActivity extends AppCompatActivity {
             String jsonStringScript = FileWork.readScript(this);
             JSONObject jsonObjectScript = new JSONObject(jsonStringScript); //заполение объекта сценария
             int masAchSize = jsonObjectScript.getInt("AchCount");
+
+            File file = new File(this.getFilesDir(), "save.json");
+            if (file.exists()){
+
+            }
+
             SaveStruct save = new SaveStruct(masAchSize, jsonObjectScript);
             JSONObject saveObject = FileWork.makeJsonSaveObject(save);
             FileWork.writeSaveFile(saveObject.toString(), this);
-            System.out.println(saveObject.toString());
         }
-        catch(Exception e)  {
+        catch(Exception e) {
             e.printStackTrace();
         }
         Intent intent = new Intent(this, GameActivity.class);

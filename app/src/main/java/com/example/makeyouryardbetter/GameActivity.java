@@ -1,11 +1,13 @@
 package com.example.makeyouryardbetter;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -36,6 +38,10 @@ public class GameActivity extends AppCompatActivity {
     public static int buttonBaseID = 37500;
     Animation animation;
 
+    private final Object lock = new Object();
+    private boolean isLocked = false;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +50,26 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         animation = AnimationUtils.loadAnimation(this, R.anim.myalpha);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                synchronized (lock) {
+                  //  isLocked = true;
+                }
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                synchronized (lock) {
+                    isLocked = false;
+                }
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
         try {
             String stringConfig = FileWork.readConfig(this);
@@ -51,12 +77,21 @@ public class GameActivity extends AppCompatActivity {
             JSONArray jsonGameTypes = jsonConfig.getJSONArray("gameScreenTypes");
             screen = new ScreenTypes[jsonGameTypes.length()];
             View.OnClickListener click = new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View v) {
                     try {
-                        if (!animation.hasEnded()) {
-                            return;
+                        synchronized (lock) {
+                            if (isLocked || !animation.hasEnded()) {
+                                return;
+                            }
+                            isLocked = true;
                         }
+                        /*if (!animation.hasEnded()) {
+                            animation.cancel();
+                            return;
+                        }*/
+
                         JSONObject currentScreen = jsonObjectScript.getJSONObject("ScreenID" + save.chProcess[save.curChapter]);
                         int newID = currentScreen.getInt("nextID");
                         save.chProcess[save.curChapter] = newID;
@@ -90,11 +125,15 @@ public class GameActivity extends AppCompatActivity {
                 }
             };
             View.OnClickListener buttonClick = new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View v) {
                     try {
-                        if (!animation.hasEnded()) {
-                            return;
+                        synchronized (lock) {
+                            if (isLocked || !animation.hasEnded()) {
+                                return;
+                            }
+                            isLocked = true;
                         }
                         JSONObject currentScreen = jsonObjectScript.getJSONObject("ScreenID" + save.chProcess[save.curChapter]);
                         JSONArray next = currentScreen.getJSONArray("nextID");
@@ -148,8 +187,8 @@ public class GameActivity extends AppCompatActivity {
                     screen[i].buttons[j].setOnClickListener(buttonClick);
                 }
             }
-            for (int i=0;i<screen.length;i++){
-                for (int j=0;j<screen[i].textViews.length;i++){
+            for (int i = 0; i < screen.length; i++){
+                for (int j = 0; j < screen[i].textViews.length; i++){
                     screen[i].textViews[j].setBackgroundColor(Color.WHITE);
                 }
             }
@@ -164,12 +203,7 @@ public class GameActivity extends AppCompatActivity {
             JSONObject saveObject = new JSONObject(s);
             save.FormSaveStruct(saveObject);
             int l = FileWork.outParameters(this, jsonObjectScript, save);
-            //screen[l].layout
 
-
-            System.out.println(screen[l].layout.getWidth());
-            System.out.println(screen[l].textViews[0].getWidth());
-            System.out.println(screen[l].textViews[0].getLeft());
             setContentView(screen[l].layout,
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)); //вывод полученных данных
             screen[l].layout.startAnimation(animation);

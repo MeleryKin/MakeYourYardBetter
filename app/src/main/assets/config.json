@@ -9,19 +9,251 @@
   ],
   "mainScreen": {
     "newGameButton": {
-      "width": 100,
-      "height": 50,
-      "left": 70,
-      "top": 60,
+      "width": 180,
+      "height": 110,
+      "left": 30,
+      "top": 20,
       "text": "Новая игра"
     },
     "continueButton": {
-      "width": 100,
-      "height": 50,
-      "left": 70,
-      "top": 160,
+      "width": 180,
+      "height": 110,
+      "left": 30,
+      "top": 150,
       "text": "Продолжить"
     }
+  },
+  "memoScreen": {
+    "memoCount": 4,
+    "width": 180,
+    "height": 70,
+    "distance": 20,
+    "left": 30,
+    "iconImageName": "icon",
+    "iconCount": 2,
+    "iconSize": 10,
+    "articles": [
+      {
+        "title": "Заголовок заметки 1",
+        "content": [
+          {
+            "status": "none",
+            "text": "Заголовок текста"
+          },
+          {
+            "status": "none",
+            "text": "Текст 1"
+          },
+          {
+            "status": "point",
+            "text": "Пункт 1"
+          },
+          {
+            "status": "point",
+            "text": "Пункт 2"
+          },
+          {
+            "status": "none",
+            "text": "Текст 2"
+          }
+        ]
+      },
+      {
+        "title": "Заголовок заметки 2",
+        "content": [
+          {
+            "status": "none",
+            "text": "Заголовок текста"
+          },
+          {
+            "status": "none",
+            "text": "Текст 1"
+          },
+          {
+            "status": "point",
+            "text": "Пункт 1"
+          },
+          {
+            "status": "point",
+            "text": "Пункт 2"
+          },
+          {
+            "status": "none",
+            "text": "Текст 2"
+          }
+        ]
+      },
+      {
+        "title": "Заголовок заметки 3",
+        "content": [
+          {
+            "status": "none",
+            "text": "Заголовок текста"
+          },
+          {
+            "status": "none",
+            "text": "Текст 1"
+          },
+          {
+            "status": "point",
+            "text": "Пункт 1"
+          },
+          {
+            "status": "point",
+            "text": "Пункт 2"
+          },
+          {
+            "status": "none",
+            "text": "Текст 2"
+          }
+        ]
+      },
+      {
+        "title": "Заголовок заметки 4",
+        "content": [
+          {
+            "status": "none",
+            "text": "Заголовок текста"
+          },
+          {
+            "status": "none",
+            "text": "Текст 1"
+          },
+          {
+            "status": "point",
+            "text": "Пункт 1"
+          },
+          {
+            "status": "point",
+            "text": "Пункт 2"
+          },
+          {
+            "status": "none",
+            "text": "Текст 2"
+          }
+        ]
+      },
+      {
+        "title": "Заголовок заметки 5",
+        "content": [
+          {
+            "status": "none",
+            "text": "Заголовок текста"
+          },
+          {
+            "status": "none",
+            "text": "Текст 1"
+          },
+          {
+            "status": "point",
+            "text": "Пункт 1"
+          },
+          {
+            "status": "point",
+            "text": "Пункт 2"
+          },
+          {
+            "status": "none",
+            "text": "Текст 2"
+          }
+        ]
+      },
+      {
+        "title": "Заголовок заметки 6",
+        "content": [
+          {
+            "status": "none",
+            "text": "Заголовок текста"
+          },
+          {
+            "status": "none",
+            "text": "Текст 1"
+          },
+          {
+            "status": "point",
+            "text": "Пункт 1"
+          },
+          {
+            "status": "point",
+            "text": "Пункт 2"
+          },
+          {
+            "status": "none",
+            "text": "Текст 2"
+          }
+        ]
+      }
+    ]
+  },
+  "videoScreen": {
+    "width": 180,
+    "height": 110,
+    "distance": 20,
+    "left": 30,
+    "videos": [
+      {
+        "title": "Видео 1",
+        "imageName": "imageVideo1"
+      },
+      {
+        "title": "Видео 2",
+        "imageName": "imageVideo1"
+      },
+      {
+        "title": "Видео 3",
+        "imageName": "imageVideo1"
+      },
+      {
+        "title": "Видео 4",
+        "imageName": "imageVideo1"
+      },
+      {
+        "title": "Видео 5",
+        "imageName": "imageVideo1"
+      },
+      {
+        "title": "Видео 6",
+        "imageName": "imageVideo1"
+      }
+    ]
+  },
+  "achievementScreen": {
+    "height": 35,
+    "width" : 100,
+    "distance": 20,
+    "imageAch": "ach",
+    "achievements": [
+      {
+        "title": "Достижение 1"
+      },
+      {
+        "title": "Достижение 2"
+      },
+      {
+        "title": "Достижение 3"
+      },
+      {
+        "title": "Достижение 4"
+      },
+      {
+        "title": "Достижение 5"
+      },
+      {
+        "title": "Достижение 6"
+      },
+      {
+        "title": "Достижение 7"
+      },
+      {
+        "title": "Достижение 8"
+      },
+      {
+        "title": "Достижение 9"
+      },
+      {
+        "title": "Достижение 10"
+      }
+    ]
   },
   "menuPanel": {
     "countButtons": 5,

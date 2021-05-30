@@ -15,10 +15,11 @@ public class MenuButton {
     }
 
     public void setParams(LinearLayout.LayoutParams p){
-        p.height /= 2;
+        p.height /= 3;
         this.text.setLayoutParams(p);
         LinearLayout.LayoutParams p1 = new LinearLayout.LayoutParams(p.width, p.height);
         p1.topMargin = 0;
+        p1.height = p.height * 2;
         p1.leftMargin = p.leftMargin;
         this.image.setLayoutParams(p1);
     }

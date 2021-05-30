@@ -3,12 +3,12 @@ package com.example.makeyouryardbetter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.os.Build;
+import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +64,7 @@ public class FileWork extends MainActivity{
         return new String(buffer);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static int outParameters(Context context, JSONObject jsonRoot, SaveStruct currentSave)
             throws JSONException, IOException {
 
@@ -101,7 +102,6 @@ public class FileWork extends MainActivity{
             int t1 = jo.getInt("top");
             p.topMargin = newHeight(t1 - base);
             base = t + t1;
-            System.out.println(base);
             String mDrawableName = jo.getString("imageName");
             int resID = context.getResources().getIdentifier(mDrawableName, "drawable", context.getPackageName());
             GameActivity.screen[type].imageViews[i].setImageResource(resID);
@@ -118,8 +118,12 @@ public class FileWork extends MainActivity{
             int t1 = jo.getInt("top");
             p.topMargin = newHeight(t1 - base);
             base = t + t1;
+            GameActivity.screen[type].buttons[i].setBackgroundResource(R.drawable.button_style);
             GameActivity.screen[type].buttons[i].setText(jo.getString("text"));
             GameActivity.screen[type].buttons[i].setLayoutParams(p);
+            GameActivity.screen[type].buttons[i].setAllCaps(false);
+            GameActivity.screen[type].buttons[i].setAutoSizeTextTypeUniformWithConfiguration(1, 17, 1, TypedValue.COMPLEX_UNIT_DIP);
+           // GameActivity.screen[type].buttons[i].line
             GameActivity.screen[type].layout.addView(GameActivity.screen[type].buttons[i]);
             param++;
         }
@@ -132,12 +136,14 @@ public class FileWork extends MainActivity{
             int t1 = jo.getInt("top");
             p.topMargin = newHeight(t1 - base);
             base = t + t1;
-            System.out.println(base);
+            GameActivity.screen[type].textViews[i].setBackgroundResource(R.drawable.text_style);
             GameActivity.screen[type].textViews[i].setText(jo.getString("text"));
             GameActivity.screen[type].textViews[i].setLayoutParams(p);
-        //    GameActivity.screen[type].textViews[i].setBackgroundColor(context.getResources().getColor(R.color.purple));
+           // GameActivity.screen[type].textViews[i].setBackgroundColor(context.getResources().getColor(R.color.lightBlue));
             GameActivity.screen[type].layout.addView(GameActivity.screen[type].textViews[i]);
             GameActivity.screen[type].textViews[i].setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+            GameActivity.screen[type].textViews[i].setAutoSizeTextTypeUniformWithConfiguration(1, 17,1, TypedValue.COMPLEX_UNIT_DIP);
+           // GameActivity.screen[type].textViews[i]
             param++;
         }
 

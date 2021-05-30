@@ -96,11 +96,11 @@
     ]
   },
   "ScreenID60": {
-    "nextID": 70,
+    "nextID": 100,
     "screenType": 1,
     "views": [
       {
-        "imageName": "ph1",
+        "imageName": "ph3",
         "width": 240,
         "height": 320,
         "top": 0,
@@ -108,66 +108,6 @@
       },
       {
         "text": "Но вдруг...",
-        "width": 180,
-        "height": 30,
-        "top": 270,
-        "left": 30
-      }
-    ]
-  },
-  "ScreenID70": {
-    "nextID": 80,
-    "screenType": 1,
-    "views": [
-      {
-        "imageName": "ph1",
-        "width": 240,
-        "height": 320,
-        "top": 0,
-        "left": 0
-      },
-      {
-        "text": "",
-        "width": 180,
-        "height": 30,
-        "top": 270,
-        "left": 30
-      }
-    ]
-  },
-  "ScreenID80": {
-    "nextID": 90,
-    "screenType": 1,
-    "views": [
-      {
-        "imageName": "ph1",
-        "width": 240,
-        "height": 320,
-        "top": 0,
-        "left": 0
-      },
-      {
-        "text": "",
-        "width": 180,
-        "height": 30,
-        "top": 270,
-        "left": 30
-      }
-    ]
-  },
-  "ScreenID90": {
-    "nextID": 100,
-    "screenType": 1,
-    "views": [
-      {
-        "imageName": "ph1",
-        "width": 240,
-        "height": 320,
-        "top": 0,
-        "left": 0
-      },
-      {
-        "text": "",
         "width": 180,
         "height": 30,
         "top": 270,

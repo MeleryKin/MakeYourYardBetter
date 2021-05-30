@@ -1,19 +1,26 @@
 package com.example.makeyouryardbetter;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import org.json.JSONObject;
 
@@ -27,8 +34,10 @@ public class ChapterMenuActivity extends AppCompatActivity {
     JSONObject jsonObjectScript, jsonObjectSave;
     int chapterCount;
     final int userID = 6000;
+    final int imageBase = 20000;
     SaveStruct save;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +46,7 @@ public class ChapterMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chapter_menu);
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        linearLayout = findViewById(R.id.linearLayout);
         String jsonStringScript, jsonStringSave;
 
         metrics = new DisplayMetrics();
@@ -50,9 +59,6 @@ public class ChapterMenuActivity extends AppCompatActivity {
         int masAchSize;
 
         try {
-            System.out.println(height);
-            System.out.println(width);
-
             jsonStringScript = FileWork.readScript(this);
             jsonObjectScript = new JSONObject(jsonStringScript); //заполение объекта сценария
             jsonStringSave = FileWork.readSaveFile(this);
@@ -62,22 +68,29 @@ public class ChapterMenuActivity extends AppCompatActivity {
             save = new SaveStruct(masAchSize, jsonObjectScript);
             save.FormSaveStruct(jsonObjectSave);
 
+            linearLayout.setBackgroundColor(Color.WHITE);
+
             int countID = 0;
 
             for (int i = 0; i < chapterCount; i++){
-                Button b = new Button(getApplicationContext());
-                b.setText("Глава " + (countID + 1));
-                b.setLayoutParams(
-                    new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT)
-                );
-                b.setId(userID + countID);
-                final int select = b.getId() % userID;
+                MenuButton b = new MenuButton(getApplicationContext());
+                b.text.setText("Глава " + (countID + 1));
+                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(FileWork.newWidth(180), FileWork.newHeight(110));
+                p.leftMargin = FileWork.newWidth(30);
+                p.topMargin = FileWork.newHeight(30);
+                b.setParams(p);
+                b.text.setId(userID + countID);
+                b.image.setId(userID + countID + imageBase);
+                final int select = b.text.getId() % userID;
                 final Context context = this;
-                b.setEnabled(save.chAvail[select]);
+                b.text.setEnabled(save.chAvail[select]);
+                b.image.setEnabled(save.chAvail[select]);
+                b.text.setBackgroundColor(Color.GREEN);
+                b.image.setBackgroundColor(Color.MAGENTA);
+                b.text.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                b.text.setAutoSizeTextTypeUniformWithConfiguration(1, 17,1, TypedValue.COMPLEX_UNIT_DIP);
                 final Intent intent = new Intent(this, GameActivity.class);
-                b.setOnClickListener(new View.OnClickListener() {
+                View.OnClickListener chapterClick = new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
@@ -94,13 +107,16 @@ public class ChapterMenuActivity extends AppCompatActivity {
                         }
                         startActivity(intent);
                     }
-                });
+                };
+                b.text.setOnClickListener(chapterClick);
+                b.image.setOnClickListener(chapterClick);
                 Display display = getWindowManager().getDefaultDisplay();
                 Point size = new Point();
                 display.getSize(size);
                 int width = size.x;
                 int height = size.y;
-                linearLayout.addView(b);
+                linearLayout.addView(b.text);
+                linearLayout.addView(b.image);
          //       RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) b.getLayoutParams();
            //     params.leftMargin = 0;
            //     b.setLayoutParams(params);
@@ -122,8 +138,10 @@ public class ChapterMenuActivity extends AppCompatActivity {
             save.FormSaveStruct(jsonObjectSave);
             chapterCount = jsonObjectScript.getInt("ChapterCount");
             for (int i = 0; i < chapterCount; i++){
-                Button b = findViewById(userID + i);
+                TextView b = findViewById(userID + i);
                 b.setEnabled(save.chAvail[i]);
+                ImageView iv = findViewById(userID + i + imageBase);
+                iv.setEnabled(save.chAvail[i]);
             }
         }
         catch(Exception e)  {

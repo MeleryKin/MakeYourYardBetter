@@ -6,4 +6,6 @@
     <color name="black">#000000</color>
     <color name="purple">#d083eb</color>
     <color name="white">#FFFFFF</color>
+    <color name="lightBlue">#b0feff</color>
+    <color name="sand">#fff1b3</color>
 </resources>
