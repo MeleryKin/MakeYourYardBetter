@@ -1,12 +1,4 @@
 {
-  "gameScreenTypes": [
-    [0, 0, 0, 1],
-    [0, 1, 0, 1],
-    [0, 2, 0, 1],
-    [0, 1, 3, 1],
-    [0, 1, 2, 1],
-    [1, 0, 0, 0]
-  ],
   "mainScreen": {
     "newGameButton": {
       "width": 180,
@@ -24,92 +16,110 @@
     }
   },
   "memoScreen": {
-    "memoCount": 4,
-    "width": 180,
+    "width": 200,
     "height": 70,
     "distance": 20,
-    "left": 30,
+    "left": 20,
     "iconImageName": "icon",
-    "iconCount": 2,
     "iconSize": 10,
     "articles": [
       {
-        "title": "Заголовок заметки 1",
+        "title": "Почему призыв объединяться - плохо",
+        "iconCount": 3,
         "content": [
           {
             "status": "none",
-            "text": "Заголовок текста"
+            "text": "Почему призыв объединяться - плохо"
           },
           {
             "status": "none",
-            "text": "Текст 1"
+            "text": "Нельзя просто взять и объединиться. Если вы кинете клич своим соседям: «Давайте объединимся!», никто к вам не присоединится. Это не работает так просто:"
           },
           {
             "status": "point",
-            "text": "Пункт 1"
+            "text": "Найдите конкретную цель объединения (например, посадить цветы у подъездов или отремонтировать что-то во дворе)"
           },
           {
             "status": "point",
-            "text": "Пункт 2"
+            "text": "Объединяйте людей постепенно. Начните с инициативной группы и потихоньку её расширяйте"
           },
           {
-            "status": "none",
-            "text": "Текст 2"
+            "status": "point",
+            "text": "Назначайте ответственных"
           }
         ]
       },
       {
-        "title": "Заголовок заметки 2",
+        "title": "Что такое добрососедство?",
+        "iconCount": 1,
         "content": [
           {
             "status": "none",
-            "text": "Заголовок текста"
+            "text": "Что такое добрососедство?"
           },
           {
             "status": "none",
-            "text": "Текст 1"
+            "text": "Добрососедство – дружественные отношения между соседями. "
           },
           {
             "status": "point",
-            "text": "Пункт 1"
-          },
-          {
-            "status": "point",
-            "text": "Пункт 2"
+            "text": "Позволяет принимать совместные решения по управлению и содержанию общей территории (двора) или имущества."
           },
           {
             "status": "none",
-            "text": "Текст 2"
+            "text": "Когда вы в последний раз общались с соседями? Вероятно, вы даже не знаете, кто живёт на вашей лестничной площадке, хотя с хорошего личного общения и начинается комфортная среда."
           }
         ]
       },
       {
-        "title": "Заголовок заметки 3",
+        "title": "Что может дать добрососедство",
+        "iconCount": 9,
         "content": [
           {
             "status": "none",
-            "text": "Заголовок текста"
-          },
-          {
-            "status": "none",
-            "text": "Текст 1"
+            "text": "Что может дать добрососедство"
           },
           {
             "status": "point",
-            "text": "Пункт 1"
+            "text": "эффективное управление многоквартирным домом;"
           },
           {
             "status": "point",
-            "text": "Пункт 2"
+            "text": "контроль за действиями управляющей компании;"
           },
           {
-            "status": "none",
-            "text": "Текст 2"
+            "status": "point",
+            "text": "экономия средств на содержание дома и двора;"
+          },
+          {
+            "status": "point",
+            "text": "поддержка безопасности во дворе;"
+          },
+          {
+            "status": "point",
+            "text": "своевременный капитальный ремонт,"
+          },
+          {
+            "status": "point",
+            "text": "своевременное благоустройство двора;"
+          },
+          {
+            "status": "point",
+            "text": "комфортная среда для детей и пожилых людей;"
+          },
+          {
+            "status": "point",
+            "text": "возможность взаимовыручки;"
+          },
+          {
+            "status": "point",
+            "text": "общение."
           }
         ]
       },
       {
         "title": "Заголовок заметки 4",
+        "iconCount": 2,
         "content": [
           {
             "status": "none",
@@ -135,6 +145,7 @@
       },
       {
         "title": "Заголовок заметки 5",
+        "iconCount": 2,
         "content": [
           {
             "status": "none",
@@ -160,6 +171,7 @@
       },
       {
         "title": "Заголовок заметки 6",
+        "iconCount": 2,
         "content": [
           {
             "status": "none",
@@ -193,27 +205,33 @@
     "videos": [
       {
         "title": "Видео 1",
-        "imageName": "imageVideo1"
+        "imageName": "imageVideo1",
+        "videoName": "video1"
       },
       {
         "title": "Видео 2",
-        "imageName": "imageVideo1"
+        "imageName": "imageVideo1",
+        "videoName": "video1"
       },
       {
         "title": "Видео 3",
-        "imageName": "imageVideo1"
+        "imageName": "imageVideo1",
+        "videoName": "video1"
       },
       {
         "title": "Видео 4",
-        "imageName": "imageVideo1"
+        "imageName": "imageVideo1",
+        "videoName": "video1"
       },
       {
         "title": "Видео 5",
-        "imageName": "imageVideo1"
+        "imageName": "imageVideo1",
+        "videoName": "video1"
       },
       {
         "title": "Видео 6",
-        "imageName": "imageVideo1"
+        "imageName": "imageVideo1",
+        "videoName": "video1"
       }
     ]
   },

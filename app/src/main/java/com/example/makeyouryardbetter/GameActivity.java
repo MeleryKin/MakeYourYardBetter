@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
 
-    SaveStruct save; //переменная данных сохранения
+    public static SaveStruct save; //переменная данных сохранения
     String jsonStringScript;
     JSONObject jsonObjectScript;
     int masAchSize, chapterCount;
@@ -54,7 +54,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onAnimationStart(Animation animation) {
                 synchronized (lock) {
-                  //  isLocked = true;
+                    isLocked = true;
                 }
             }
 
@@ -72,14 +72,15 @@ public class GameActivity extends AppCompatActivity {
         });
 
         try {
-            String stringConfig = FileWork.readConfig(this);
-            JSONObject jsonConfig = new JSONObject(stringConfig);
-            JSONArray jsonGameTypes = jsonConfig.getJSONArray("gameScreenTypes");
-            screen = new ScreenTypes[jsonGameTypes.length()];
+            jsonStringScript = FileWork.readScript(this);
+            jsonObjectScript = new JSONObject(jsonStringScript); //заполение объекта сценария
+            JSONArray jsonGameTypes = jsonObjectScript.getJSONArray("gameScreenTypes"); // массив описаний экранов
+            screen = new ScreenTypes[jsonGameTypes.length()]; //инициализация объекта экранов
+
             View.OnClickListener click = new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) { //реакция на нажатие изображения
                     try {
                         synchronized (lock) {
                             if (isLocked || !animation.hasEnded()) {
@@ -127,7 +128,7 @@ public class GameActivity extends AppCompatActivity {
             View.OnClickListener buttonClick = new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) { //обработка нажатия кнопки
                     try {
                         synchronized (lock) {
                             if (isLocked || !animation.hasEnded()) {
@@ -136,6 +137,7 @@ public class GameActivity extends AppCompatActivity {
                             isLocked = true;
                         }
                         JSONObject currentScreen = jsonObjectScript.getJSONObject("ScreenID" + save.chProcess[save.curChapter]);
+                        System.out.println("Character: " + GameActivity.save.curCharacter);
                         JSONArray next = currentScreen.getJSONArray("nextID");
                         save.chProcess[save.curChapter] = next.getInt(v.getId() - buttonBaseID);
                         int[] chapterID = FileWork.getChapterIDArray(jsonObjectScript);
@@ -168,7 +170,7 @@ public class GameActivity extends AppCompatActivity {
                     }
                 }
             };
-            for (int i = 0; i < jsonGameTypes.length(); i++){
+            for (int i = 0; i < jsonGameTypes.length(); i++){ //создание объектов
                 JSONArray x = jsonGameTypes.getJSONArray(i);
                 int[] m = new int[x.length()];
                 for (int j = 0; j < x.length(); j++){
@@ -176,8 +178,9 @@ public class GameActivity extends AppCompatActivity {
                 }
                 screen[i] = new ScreenTypes(this, m);
                 screen[i].layout.setOrientation(LinearLayout.VERTICAL);
-                if (GameActivity.screen[i].buttons.length == 0)GameActivity.screen[i].layout.setOnClickListener(click);
-                if (GameActivity.screen[i].buttons.length == 0) {
+
+                if (GameActivity.screen[i].buttons.length == 0 && GameActivity.screen[i].charSel.length == 0)GameActivity.screen[i].layout.setOnClickListener(click);
+                if (GameActivity.screen[i].buttons.length == 0 && GameActivity.screen[i].charSel.length == 0) {
                     for (int j = 0; j < screen[i].imageViews.length; j++) {
                         screen[i].imageViews[j].setOnClickListener(click);
                     }
@@ -193,8 +196,6 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
 
-            jsonStringScript = FileWork.readScript(this);
-            jsonObjectScript = new JSONObject(jsonStringScript); //заполение объекта сценария
             masAchSize = jsonObjectScript.getInt("AchCount");
             chapterCount = jsonObjectScript.getInt("ChapterCount");
             save = new SaveStruct(masAchSize, jsonObjectScript);

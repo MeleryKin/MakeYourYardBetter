@@ -1,7 +1,36 @@
 {
   "AchCount": 10,
   "ChapterCount": 1,
-  "ChapterID": [10, 150],
+  "ChapterID": [1, 150],
+  "gameScreenTypes": [
+    [0, 0, 0, 0, 1],
+    [0, 0, 1, 0, 1],
+    [0, 0, 2, 0, 1],
+    [0, 0, 0, 2, 2],
+    [0, 0, 1, 2, 1],
+    [0, 1, 0, 0, 0],
+    [3, 0, 0, 1, 0]
+  ],
+  "ScreenID1": {
+    "nextID": [10],
+    "screenType": 6,
+    "views": [
+      {
+        "images": ["ph1", "ph2", "ph3"],
+        "width": 240,
+        "height": 320,
+        "top": 0,
+        "left": 0
+      },
+      {
+        "text": "Выбрать",
+        "width": 180,
+        "height": 30,
+        "top": 240,
+        "left": 30
+      }
+    ]
+  },
   "ScreenID10": {
     "nextID": 20,
     "screenType": 0,
@@ -160,39 +189,32 @@
     "nextID": [130, 130, 140],
     "views": [
       {
-        "imageName": "ph1",
-        "width": 240,
-        "height": 320,
-        "top": 0,
-        "left": 0
+        "text": "Button 1",
+        "width": 50,
+        "height": 50,
+        "top": 131,
+        "left": 18
       },
       {
-        "text": "«Ок. Не проблема. Я уйду погулять.» ",
-        "width": 180,
-        "height": 30,
-        "top": 190,
-        "left": 30
+        "text": "Button 2",
+        "width": 50,
+        "height": 50,
+        "top": 131,
+        "left": 155
       },
       {
-        "text": "«Помешаешь. У меня ребёнок спит. Давай завтра?» ",
-        "width": 180,
-        "height": 30,
-        "top": 230,
-        "left": 30
+        "text": "Подпись",
+        "width": 40,
+        "height": 20,
+        "top": 91,
+        "left": 25
       },
       {
-        "text": "«Проигнорировать» ",
-        "width": 180,
-        "height": 30,
-        "top": 270,
-        "left": 30
-      },
-      {
-        "text": "«Привет, сосед! Мне надо пошуметь перфоратором минут 5. Не помешаю?»",
-        "width": 180,
-        "height": 30,
-        "top": 140,
-        "left": 30
+        "text": "Подпись",
+        "width": 40,
+        "height": 20,
+        "top": 91,
+        "left": 161
       }
     ]
   },

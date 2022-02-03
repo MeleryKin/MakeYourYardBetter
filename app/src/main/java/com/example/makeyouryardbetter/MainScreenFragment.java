@@ -56,7 +56,7 @@ public class MainScreenFragment extends Fragment {
             newGame.text.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
             newGame.text.setBackgroundColor(getResources().getColor(R.color.colorAccent));
             newGame.text.setAutoSizeTextTypeUniformWithConfiguration(1, 17,1, TypedValue.COMPLEX_UNIT_DIP);
-            newGame.image.setBackgroundColor(Color.MAGENTA);
+            newGame.image.setBackgroundColor(context.getResources().getColor(R.color.baseGreen));
 
             View.OnClickListener newGameClick = new View.OnClickListener() {
                 @Override
@@ -94,7 +94,7 @@ public class MainScreenFragment extends Fragment {
             cont.text.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
             cont.text.setBackgroundColor(getResources().getColor(R.color.colorAccent));
             cont.text.setAutoSizeTextTypeUniformWithConfiguration(1, 17,1, TypedValue.COMPLEX_UNIT_DIP);
-            cont.image.setBackgroundColor(Color.MAGENTA);
+            cont.image.setBackgroundColor(context.getResources().getColor(R.color.baseGreen));
 
             View.OnClickListener contClick = new View.OnClickListener() {
                 @Override

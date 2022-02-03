@@ -62,15 +62,8 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
         currentFragment = mainScreenFragment.getId();
 
-        Button button = new Button(this);
-        LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(FileWork.newWidth(100), FileWork.newHeight(60));
-        bp.topMargin = FileWork.newHeight(20);
-        bp.leftMargin = FileWork.newWidth(20);
-        button.setLayoutParams(bp);
-        button.setText("AAAAA");
-
         LinearLayout l1 = new LinearLayout(this);
-        bp = new LinearLayout.LayoutParams(FileWork.newWidth(240), FileWork.newHeight(280));
+        LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(FileWork.newWidth(240), FileWork.newHeight(280));
         bp.leftMargin = FileWork.newWidth(0);
         bp.topMargin = FileWork.newHeight(0);
         l1.setLayoutParams(bp);
@@ -103,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
             File file = new File(this.getFilesDir(), "save.json");
             if (file.exists()){
-
+                //todo: if save file is already existed then save achievement array
             }
 
             SaveStruct save = new SaveStruct(masAchSize, jsonObjectScript);

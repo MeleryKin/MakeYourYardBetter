@@ -85,8 +85,8 @@ public class ChapterMenuActivity extends AppCompatActivity {
                 final Context context = this;
                 b.text.setEnabled(save.chAvail[select]);
                 b.image.setEnabled(save.chAvail[select]);
-                b.text.setBackgroundColor(Color.GREEN);
-                b.image.setBackgroundColor(Color.MAGENTA);
+                b.text.setBackgroundColor(context.getResources().getColor(R.color.primGreen));
+                b.image.setBackgroundColor(context.getResources().getColor(R.color.baseGreen));
                 b.text.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                 b.text.setAutoSizeTextTypeUniformWithConfiguration(1, 17,1, TypedValue.COMPLEX_UNIT_DIP);
                 final Intent intent = new Intent(this, GameActivity.class);
